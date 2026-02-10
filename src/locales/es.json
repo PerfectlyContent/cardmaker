@@ -1,0 +1,154 @@
+{
+  "app": {
+    "title": "Card Maker",
+    "tagline": "Crea tarjetas hermosas en segundos"
+  },
+  "canvas": {
+    "building": "Tu tarjeta va tomando forma..."
+  },
+  "welcome": {
+    "greeting": "Qué tarjeta vamos a crear?",
+    "guided": "Guíame",
+    "guidedDesc": "Te llevo paso a paso",
+    "freeform": "Sé lo que quiero",
+    "freeformDesc": "Describe tu tarjeta y la crearé"
+  },
+  "occasion": {
+    "title": "¿Cuál es la ocasión?",
+    "subtitle": "Toca uno para empezar",
+    "birthday": "Cumpleaños",
+    "holiday": "Festividad",
+    "thank_you": "Gracias",
+    "congratulations": "Felicitaciones",
+    "graduation": "Graduación",
+    "wedding": "Boda",
+    "new_baby": "Nuevo bebé",
+    "get_well": "Mejorate",
+    "love": "Amor",
+    "jewish_holiday": "Festividad judía",
+    "ramadan": "Ramadán",
+    "christmas": "Navidad",
+    "new_year": "Año Nuevo",
+    "mothers_day": "Día de la Madre",
+    "fathers_day": "Día del Padre",
+    "friendship": "Amistad",
+    "miss_you": "Te extraño",
+    "good_luck": "Buena suerte",
+    "custom": "Otro"
+  },
+  "recipient": {
+    "title": "¿Para quién es?",
+    "one": "Una persona",
+    "oneDesc": "Un toque personal",
+    "many": "Un grupo",
+    "manyDesc": "Para todo el grupo"
+  },
+  "details": {
+    "title": "Cuéntame sobre ellos",
+    "subtitle": "Esto nos ayuda a crear el mensaje perfecto",
+    "nameLabel": "Su nombre",
+    "namePlaceholder": "ej. María",
+    "groupPlaceholder": "ej. El equipo, Nuestra familia",
+    "detailsLabel": "¿Algún detalle? (opcional)",
+    "detailsPlaceholder": "ej. le encanta cocinar, cumple 40, tu mejor amigo/a"
+  },
+  "background": {
+    "title": "Elige un fondo",
+    "hint": "Desliza a izquierda y derecha sobre la tarjeta"
+  },
+  "vibe": {
+    "title": "¿Qué tipo de tarjeta?",
+    "funny": "Divertida",
+    "cute": "Tierna",
+    "heartfelt": "Sincera",
+    "formal": "Formal",
+    "inspiring": "Inspiradora",
+    "poetic": "Poética",
+    "festive": "Festiva",
+    "playful": "Juguetona"
+  },
+  "style": {
+    "title": "¿Qué tipo de tarjeta?",
+    "loading": "Buscando fondos hermosos..."
+  },
+  "message": {
+    "title": "Tu mensaje",
+    "subtitle": "Edita para hacerlo tuyo",
+    "generating": "Escribiendo algo especial...",
+    "regenerate": "Intentar otro",
+    "edit": "Toca para editar",
+    "freeformTitle": "Describe tu tarjeta",
+    "freeformPlaceholder": "ej. Una tarjeta cálida de cumpleaños para mi mamá que ama la jardinería, en estilo floral elegante",
+    "generate": "Crear mi tarjeta"
+  },
+  "preview": {
+    "title": "¡Tu tarjeta está lista!",
+    "subtitle": "Tu tarjeta está lista para compartir!",
+    "share": "Compartir",
+    "download": "Descargar",
+    "whatsapp": "WhatsApp",
+    "email": "Correo",
+    "copy": "Copiar",
+    "startOver": "Crear otra tarjeta",
+    "editMessage": "Editar texto",
+    "shareSuccess": "¡Tarjeta compartida!",
+    "downloadSuccess": "¡Tarjeta guardada!",
+    "copySuccess": "¡Copiado al portapapeles!"
+  },
+  "common": {
+    "next": "Siguiente",
+    "back": "Atrás",
+    "skip": "Saltar",
+    "continue": "Continuar",
+    "done": "Listo",
+    "loading": "Cargando...",
+    "error": "Algo salió mal",
+    "retry": "Intentar de nuevo",
+    "yes": "Sí",
+    "no": "No"
+  },
+  "language": {
+    "label": "Idioma",
+    "en": "English",
+    "he": "עברית",
+    "ar": "العربية",
+    "es": "Español",
+    "fr": "Français",
+    "ru": "Русский"
+  },
+  "chat": {
+    "whoIsThisFor": "¿Para quién es esta tarjeta?",
+    "recipientPlaceholder": "Escribe un nombre...",
+    "aGroup": "Un grupo",
+    "whatsTheOccasion": "¿Cuál es la ocasión?",
+    "howShouldItFeel": "¿Cómo debería sentirse?",
+    "wantAQuote": "¿Quieres agregar una cita?",
+    "pickALook": "Elige un estilo",
+    "anyDetails": "¿Algún detalle para hacerla personal?",
+    "detailsPlaceholder": "ej. le encanta el senderismo, cumple 30...",
+    "generating": "Creando tu tarjeta...",
+    "typePlaceholder": "Escribe tu respuesta...",
+    "send": "Enviar",
+    "skip": "Saltar"
+  },
+  "tone": {
+    "heartfelt": "Sincero",
+    "funny": "Divertido",
+    "formal": "Formal",
+    "casual": "Informal",
+    "poetic": "Poético",
+    "inspirational": "Inspirador"
+  },
+  "toolbar": {
+    "text": "Texto",
+    "font": "Fuente",
+    "size": "Tamaño",
+    "color": "Color",
+    "position": "Posición",
+    "background": "Fondo",
+    "share": "Compartir",
+    "top": "Arriba",
+    "center": "Centro",
+    "bottom": "Abajo"
+  }
+}

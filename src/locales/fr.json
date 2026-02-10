@@ -1,0 +1,154 @@
+{
+  "app": {
+    "title": "Card Maker",
+    "tagline": "Créez de belles cartes en quelques secondes"
+  },
+  "canvas": {
+    "building": "Votre carte prend forme..."
+  },
+  "welcome": {
+    "greeting": "Quelle carte allons-nous créer ?",
+    "guided": "Guidez-moi",
+    "guidedDesc": "Je vous accompagne étape par étape",
+    "freeform": "Je sais ce que je veux",
+    "freeformDesc": "Décrivez votre carte et je la créerai"
+  },
+  "occasion": {
+    "title": "Quelle est l'occasion ?",
+    "subtitle": "Appuyez pour commencer",
+    "birthday": "Anniversaire",
+    "holiday": "Fête",
+    "thank_you": "Merci",
+    "congratulations": "Félicitations",
+    "graduation": "Remise de diplôme",
+    "wedding": "Mariage",
+    "new_baby": "Nouveau bébé",
+    "get_well": "Bon rétablissement",
+    "love": "Amour",
+    "jewish_holiday": "Fête juive",
+    "ramadan": "Ramadan",
+    "christmas": "Noël",
+    "new_year": "Nouvel An",
+    "mothers_day": "Fête des mères",
+    "fathers_day": "Fête des pères",
+    "friendship": "Amitié",
+    "miss_you": "Tu me manques",
+    "good_luck": "Bonne chance",
+    "custom": "Autre"
+  },
+  "recipient": {
+    "title": "Pour qui est cette carte ?",
+    "one": "Une personne",
+    "oneDesc": "Une touche personnelle",
+    "many": "Un groupe",
+    "manyDesc": "Pour tout le groupe"
+  },
+  "details": {
+    "title": "Parlez-moi d'eux",
+    "subtitle": "Cela nous aide à créer le message parfait",
+    "nameLabel": "Leur nom",
+    "namePlaceholder": "ex. Marie",
+    "groupPlaceholder": "ex. L'équipe, Notre famille",
+    "detailsLabel": "Des détails ? (optionnel)",
+    "detailsPlaceholder": "ex. aime cuisiner, fête ses 40 ans, votre meilleur(e) ami(e)"
+  },
+  "background": {
+    "title": "Choisissez un fond",
+    "hint": "Glissez à gauche et à droite sur la carte ci-dessus"
+  },
+  "vibe": {
+    "title": "Quel type de carte ?",
+    "funny": "Drôle",
+    "cute": "Mignon",
+    "heartfelt": "Sincère",
+    "formal": "Formel",
+    "inspiring": "Inspirant",
+    "poetic": "Poétique",
+    "festive": "Festif",
+    "playful": "Ludique"
+  },
+  "style": {
+    "title": "Quel type de carte ?",
+    "loading": "Recherche de beaux fonds..."
+  },
+  "message": {
+    "title": "Votre message",
+    "subtitle": "Modifiez pour le personnaliser",
+    "generating": "Écriture de quelque chose de spécial...",
+    "regenerate": "Essayer un autre",
+    "edit": "Appuyez pour modifier",
+    "freeformTitle": "Décrivez votre carte",
+    "freeformPlaceholder": "ex. Une carte d'anniversaire chaleureuse pour ma mère qui aime le jardinage, dans un style floral élégant",
+    "generate": "Créer ma carte"
+  },
+  "preview": {
+    "title": "Votre carte est prête !",
+    "subtitle": "Votre carte est prête à partager !",
+    "share": "Partager",
+    "download": "Télécharger",
+    "whatsapp": "WhatsApp",
+    "email": "E-mail",
+    "copy": "Copier",
+    "startOver": "Créer une autre carte",
+    "editMessage": "Modifier le texte",
+    "shareSuccess": "Carte partagée !",
+    "downloadSuccess": "Carte enregistrée !",
+    "copySuccess": "Copié dans le presse-papiers !"
+  },
+  "common": {
+    "next": "Suivant",
+    "back": "Retour",
+    "skip": "Passer",
+    "continue": "Continuer",
+    "done": "Terminé",
+    "loading": "Chargement...",
+    "error": "Quelque chose s'est mal passé",
+    "retry": "Réessayer",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "language": {
+    "label": "Langue",
+    "en": "English",
+    "he": "עברית",
+    "ar": "العربية",
+    "es": "Español",
+    "fr": "Français",
+    "ru": "Русский"
+  },
+  "chat": {
+    "whoIsThisFor": "Pour qui est cette carte ?",
+    "recipientPlaceholder": "Tapez un nom...",
+    "aGroup": "Un groupe",
+    "whatsTheOccasion": "Quelle est l'occasion ?",
+    "howShouldItFeel": "Quel ton souhaitez-vous ?",
+    "wantAQuote": "Voulez-vous ajouter une citation ?",
+    "pickALook": "Choisissez un style",
+    "anyDetails": "Des détails pour la personnaliser ?",
+    "detailsPlaceholder": "ex. aime la randonnée, fête ses 30 ans...",
+    "generating": "Création de votre carte...",
+    "typePlaceholder": "Tapez votre réponse...",
+    "send": "Envoyer",
+    "skip": "Passer"
+  },
+  "tone": {
+    "heartfelt": "Sincère",
+    "funny": "Drôle",
+    "formal": "Formel",
+    "casual": "Décontracté",
+    "poetic": "Poétique",
+    "inspirational": "Inspirant"
+  },
+  "toolbar": {
+    "text": "Texte",
+    "font": "Police",
+    "size": "Taille",
+    "color": "Couleur",
+    "position": "Position",
+    "background": "Fond",
+    "share": "Partager",
+    "top": "Haut",
+    "center": "Centre",
+    "bottom": "Bas"
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "app": {
+    "title": "Card Maker",
+    "tagline": "צרו כרטיסי ברכה יפים בשניות"
+  },
+  "canvas": {
+    "building": "הכרטיס שלכם מתגבש..."
+  },
+  "welcome": {
+    "greeting": "איזה כרטיס ניצור?",
+    "guided": "תדריכו אותי",
+    "guidedDesc": "אני אלווה אתכם צעד אחר צעד",
+    "freeform": "אני יודע/ת מה אני רוצה",
+    "freeformDesc": "תארו את הכרטיס ואני אצור אותו"
+  },
+  "occasion": {
+    "title": "מה האירוע?",
+    "subtitle": "הקש כדי להתחיל",
+    "birthday": "יום הולדת",
+    "holiday": "חג",
+    "thank_you": "תודה",
+    "congratulations": "מזל טוב",
+    "graduation": "סיום לימודים",
+    "wedding": "חתונה",
+    "new_baby": "לידה",
+    "get_well": "החלמה",
+    "love": "אהבה",
+    "jewish_holiday": "חג יהודי",
+    "ramadan": "רמדאן",
+    "christmas": "חג המולד",
+    "new_year": "שנה חדשה",
+    "mothers_day": "יום האם",
+    "fathers_day": "יום האב",
+    "friendship": "חברות",
+    "miss_you": "מתגעגע/ת",
+    "good_luck": "בהצלחה",
+    "shabbat_shalom": "שבת שלום",
+    "custom": "אחר"
+  },
+  "recipient": {
+    "title": "למי הכרטיס?",
+    "one": "אדם אחד",
+    "oneDesc": "מגע אישי",
+    "many": "קבוצה",
+    "manyDesc": "לכל הקבוצה"
+  },
+  "details": {
+    "title": "ספרו לי עליהם",
+    "subtitle": "זה עוזר לנו ליצור את ההודעה המושלמת",
+    "nameLabel": "השם שלהם",
+    "namePlaceholder": "למשל שרה",
+    "groupPlaceholder": "למשל הצוות, המשפחה שלנו",
+    "detailsLabel": "פרטים נוספים? (לא חובה)",
+    "detailsPlaceholder": "למשל אוהב/ת טיולים, חוגג/ת 30, החבר/ה הכי טוב/ה"
+  },
+  "background": {
+    "title": "בחרו רקע",
+    "hint": "החליקו ימינה ושמאלה על הכרטיס למעלה"
+  },
+  "vibe": {
+    "title": "איזה סוג כרטיס?",
+    "funny": "מצחיק",
+    "cute": "חמוד",
+    "heartfelt": "מהלב",
+    "formal": "רשמי",
+    "inspiring": "מעורר השראה",
+    "poetic": "שירי",
+    "festive": "חגיגי",
+    "playful": "שובב"
+  },
+  "style": {
+    "title": "איזה סוג כרטיס?",
+    "loading": "מחפש רקעים יפים..."
+  },
+  "message": {
+    "title": "ההודעה שלך",
+    "subtitle": "ערוך כדי להפוך את זה שלך",
+    "generating": "כותב משהו מיוחד...",
+    "regenerate": "נסו שוב",
+    "edit": "לחצו לעריכה",
+    "freeformTitle": "תארו את הכרטיס",
+    "freeformPlaceholder": "למשל כרטיס יום הולדת חם לאמא שלי שאוהבת גינון, בסגנון פרחוני אלגנטי",
+    "generate": "צרו את הכרטיס שלי"
+  },
+  "preview": {
+    "title": "הכרטיס שלכם מוכן!",
+    "subtitle": "הכרטיס שלך מוכן לשיתוף!",
+    "share": "שיתוף",
+    "download": "הורדה",
+    "whatsapp": "וואטסאפ",
+    "email": "אימייל",
+    "copy": "העתקה",
+    "startOver": "ליצור כרטיס נוסף",
+    "editMessage": "עריכת טקסט",
+    "shareSuccess": "הכרטיס שותף!",
+    "downloadSuccess": "הכרטיס נשמר!",
+    "copySuccess": "הועתק ללוח!"
+  },
+  "common": {
+    "next": "הבא",
+    "back": "חזרה",
+    "skip": "דלג",
+    "continue": "המשך",
+    "done": "סיום",
+    "loading": "טוען...",
+    "error": "משהו השתבש",
+    "retry": "נסו שוב",
+    "yes": "כן",
+    "no": "לא"
+  },
+  "language": {
+    "label": "שפה",
+    "en": "English",
+    "he": "עברית",
+    "ar": "العربية",
+    "es": "Español",
+    "fr": "Français",
+    "ru": "Русский"
+  },
+  "chat": {
+    "whoIsThisFor": "למי הכרטיס הזה?",
+    "recipientPlaceholder": "הקלידו שם...",
+    "aGroup": "קבוצה",
+    "whatsTheOccasion": "מה האירוע?",
+    "howShouldItFeel": "איך זה צריך להרגיש?",
+    "wantAQuote": "רוצים להוסיף ציטוט?",
+    "pickALook": "בחרו מראה",
+    "anyDetails": "יש פרטים שיהפכו את זה לאישי?",
+    "detailsPlaceholder": "למשל אוהב/ת טיולים, חוגג/ת 30...",
+    "generating": "יוצר את הכרטיס שלכם...",
+    "typePlaceholder": "הקלידו את התשובה...",
+    "send": "שליחה",
+    "skip": "דלג"
+  },
+  "tone": {
+    "heartfelt": "מהלב",
+    "funny": "מצחיק",
+    "formal": "רשמי",
+    "casual": "לא רשמי",
+    "poetic": "שירי",
+    "inspirational": "מעורר השראה"
+  },
+  "toolbar": {
+    "text": "טקסט",
+    "font": "גופן",
+    "size": "גודל",
+    "color": "צבע",
+    "position": "מיקום",
+    "background": "רקע",
+    "share": "שיתוף",
+    "top": "למעלה",
+    "center": "מרכז",
+    "bottom": "למטה"
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "app": {
+    "title": "Card Maker",
+    "tagline": "Create beautiful cards in seconds"
+  },
+  "canvas": {
+    "building": "Your card is taking shape..."
+  },
+  "welcome": {
+    "greeting": "What kind of card shall we make?",
+    "guided": "Guide me",
+    "guidedDesc": "I'll walk you through it step by step",
+    "freeform": "I know what I want",
+    "freeformDesc": "Describe your card and I'll create it"
+  },
+  "occasion": {
+    "title": "What's the occasion?",
+    "subtitle": "Tap one to get started",
+    "birthday": "Birthday",
+    "holiday": "Holiday",
+    "thank_you": "Thank You",
+    "congratulations": "Congratulations",
+    "graduation": "Graduation",
+    "wedding": "Wedding",
+    "new_baby": "New Baby",
+    "get_well": "Get Well",
+    "love": "Love",
+    "jewish_holiday": "Jewish Holiday",
+    "ramadan": "Ramadan",
+    "christmas": "Christmas",
+    "new_year": "New Year",
+    "mothers_day": "Mother's Day",
+    "fathers_day": "Father's Day",
+    "friendship": "Friendship",
+    "miss_you": "Miss You",
+    "good_luck": "Good Luck",
+    "custom": "Other"
+  },
+  "recipient": {
+    "title": "Who's it for?",
+    "one": "One person",
+    "oneDesc": "A personal touch",
+    "many": "A group",
+    "manyDesc": "For the whole group"
+  },
+  "details": {
+    "title": "Tell me about them",
+    "subtitle": "This helps us craft the perfect message",
+    "nameLabel": "Their name",
+    "namePlaceholder": "e.g. Sarah",
+    "groupPlaceholder": "e.g. The Team, Our Family",
+    "detailsLabel": "Any details? (optional)",
+    "detailsPlaceholder": "e.g. loves hiking, turning 30, your best friend"
+  },
+  "vibe": {
+    "title": "What kind of card?",
+    "funny": "Funny",
+    "cute": "Cute",
+    "heartfelt": "Heartfelt",
+    "formal": "Formal",
+    "inspiring": "Inspiring",
+    "poetic": "Poetic",
+    "festive": "Festive",
+    "playful": "Playful"
+  },
+  "style": {
+    "title": "What kind of card?",
+    "loading": "Finding beautiful backgrounds..."
+  },
+  "background": {
+    "title": "Pick a background",
+    "hint": "Swipe left & right on the card above"
+  },
+  "message": {
+    "title": "Your message",
+    "subtitle": "Edit it to make it yours",
+    "generating": "Writing something special...",
+    "regenerate": "Try another",
+    "edit": "Tap to edit",
+    "freeformTitle": "Describe your card",
+    "freeformPlaceholder": "e.g. A warm birthday card for my mom who loves gardening, in a floral elegant style",
+    "generate": "Create my card"
+  },
+  "preview": {
+    "title": "Your card is ready!",
+    "subtitle": "Your card is ready to share!",
+    "share": "Share",
+    "download": "Download",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "copy": "Copy",
+    "startOver": "Make another card",
+    "editMessage": "Edit text",
+    "shareSuccess": "Card shared!",
+    "downloadSuccess": "Card saved!",
+    "copySuccess": "Copied to clipboard!"
+  },
+  "common": {
+    "next": "Next",
+    "back": "Back",
+    "skip": "Skip",
+    "continue": "Continue",
+    "done": "Done",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "language": {
+    "label": "Language",
+    "en": "English",
+    "he": "עברית",
+    "ar": "العربية",
+    "es": "Español",
+    "fr": "Français",
+    "ru": "Русский"
+  },
+  "chat": {
+    "whoIsThisFor": "Who is this card for?",
+    "recipientPlaceholder": "Type a name...",
+    "aGroup": "A group",
+    "whatsTheOccasion": "What's the occasion?",
+    "howShouldItFeel": "How should it feel?",
+    "wantAQuote": "Want to add a quote?",
+    "pickALook": "Pick a look",
+    "anyDetails": "Any details to make it personal?",
+    "detailsPlaceholder": "e.g. loves hiking, turning 30...",
+    "generating": "Creating your card...",
+    "typePlaceholder": "Type your answer...",
+    "send": "Send",
+    "skip": "Skip"
+  },
+  "tone": {
+    "heartfelt": "Heartfelt",
+    "funny": "Funny",
+    "formal": "Formal",
+    "casual": "Casual",
+    "poetic": "Poetic",
+    "inspirational": "Inspirational"
+  },
+  "toolbar": {
+    "text": "Text",
+    "font": "Font",
+    "size": "Size",
+    "color": "Color",
+    "position": "Position",
+    "background": "Background",
+    "share": "Share",
+    "top": "Top",
+    "center": "Center",
+    "bottom": "Bottom"
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "app": {
+    "title": "Card Maker",
+    "tagline": "أنشئ بطاقات تهنئة جميلة في ثوانٍ"
+  },
+  "canvas": {
+    "building": "بطاقتك تأخذ شكلها..."
+  },
+  "welcome": {
+    "greeting": "أي بطاقة سنصنع؟",
+    "guided": "أرشدني",
+    "guidedDesc": "سأرشدك خطوة بخطوة",
+    "freeform": "أعرف ما أريد",
+    "freeformDesc": "صف بطاقتك وسأنشئها لك"
+  },
+  "occasion": {
+    "title": "ما المناسبة؟",
+    "subtitle": "اضغط للبدء",
+    "birthday": "عيد ميلاد",
+    "holiday": "عطلة",
+    "thank_you": "شكراً",
+    "congratulations": "تهانينا",
+    "graduation": "تخرج",
+    "wedding": "زفاف",
+    "new_baby": "مولود جديد",
+    "get_well": "سلامات",
+    "love": "حب",
+    "jewish_holiday": "عيد يهودي",
+    "ramadan": "رمضان",
+    "christmas": "عيد الميلاد",
+    "new_year": "سنة جديدة",
+    "mothers_day": "عيد الأم",
+    "fathers_day": "عيد الأب",
+    "friendship": "صداقة",
+    "miss_you": "اشتقت إليك",
+    "good_luck": "حظاً سعيداً",
+    "custom": "أخرى"
+  },
+  "recipient": {
+    "title": "لمن هذه البطاقة؟",
+    "one": "شخص واحد",
+    "oneDesc": "لمسة شخصية",
+    "many": "مجموعة",
+    "manyDesc": "للمجموعة كلها"
+  },
+  "details": {
+    "title": "أخبرني عنهم",
+    "subtitle": "هذا يساعدنا في صياغة الرسالة المثالية",
+    "nameLabel": "اسمهم",
+    "namePlaceholder": "مثلاً سارة",
+    "groupPlaceholder": "مثلاً الفريق، عائلتنا",
+    "detailsLabel": "أي تفاصيل؟ (اختياري)",
+    "detailsPlaceholder": "مثلاً يحب المشي، يبلغ 30 عاماً، أفضل صديق"
+  },
+  "background": {
+    "title": "اختر خلفية",
+    "hint": "اسحب يميناً ويساراً على البطاقة أعلاه"
+  },
+  "vibe": {
+    "title": "أي نوع بطاقة؟",
+    "funny": "مضحك",
+    "cute": "لطيف",
+    "heartfelt": "من القلب",
+    "formal": "رسمي",
+    "inspiring": "ملهم",
+    "poetic": "شعري",
+    "festive": "احتفالي",
+    "playful": "مرح"
+  },
+  "style": {
+    "title": "أي نوع بطاقة؟",
+    "loading": "جاري البحث عن خلفيات جميلة..."
+  },
+  "message": {
+    "title": "رسالتك",
+    "subtitle": "حررها لتصبح خاصة بك",
+    "generating": "أكتب شيئاً مميزاً...",
+    "regenerate": "جرب أخرى",
+    "edit": "اضغط للتعديل",
+    "freeformTitle": "صف بطاقتك",
+    "freeformPlaceholder": "مثلاً بطاقة عيد ميلاد دافئة لأمي التي تحب البستنة، بأسلوب زهري أنيق",
+    "generate": "أنشئ بطاقتي"
+  },
+  "preview": {
+    "title": "بطاقتك جاهزة!",
+    "subtitle": "بطاقتك جاهزة للمشاركة!",
+    "share": "مشاركة",
+    "download": "تحميل",
+    "whatsapp": "واتساب",
+    "email": "بريد إلكتروني",
+    "copy": "نسخ",
+    "startOver": "إنشاء بطاقة أخرى",
+    "editMessage": "تعديل النص",
+    "shareSuccess": "تمت مشاركة البطاقة!",
+    "downloadSuccess": "تم حفظ البطاقة!",
+    "copySuccess": "تم النسخ!"
+  },
+  "common": {
+    "next": "التالي",
+    "back": "رجوع",
+    "skip": "تخطي",
+    "continue": "متابعة",
+    "done": "تم",
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ",
+    "retry": "حاول مرة أخرى",
+    "yes": "نعم",
+    "no": "لا"
+  },
+  "language": {
+    "label": "اللغة",
+    "en": "English",
+    "he": "עברית",
+    "ar": "العربية",
+    "es": "Español",
+    "fr": "Français",
+    "ru": "Русский"
+  },
+  "chat": {
+    "whoIsThisFor": "لمن هذه البطاقة؟",
+    "recipientPlaceholder": "اكتب اسماً...",
+    "aGroup": "مجموعة",
+    "whatsTheOccasion": "ما المناسبة؟",
+    "howShouldItFeel": "كيف يجب أن تبدو؟",
+    "wantAQuote": "هل تريد إضافة اقتباس؟",
+    "pickALook": "اختر مظهراً",
+    "anyDetails": "هل هناك تفاصيل لجعلها شخصية؟",
+    "detailsPlaceholder": "مثلاً يحب المشي، يبلغ 30 عاماً...",
+    "generating": "جاري إنشاء بطاقتك...",
+    "typePlaceholder": "اكتب إجابتك...",
+    "send": "إرسال",
+    "skip": "تخطي"
+  },
+  "tone": {
+    "heartfelt": "من القلب",
+    "funny": "مضحك",
+    "formal": "رسمي",
+    "casual": "غير رسمي",
+    "poetic": "شعري",
+    "inspirational": "ملهم"
+  },
+  "toolbar": {
+    "text": "نص",
+    "font": "خط",
+    "size": "حجم",
+    "color": "لون",
+    "position": "موضع",
+    "background": "خلفية",
+    "share": "مشاركة",
+    "top": "أعلى",
+    "center": "وسط",
+    "bottom": "أسفل"
+  }
+}
