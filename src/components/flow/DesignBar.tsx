@@ -37,7 +37,12 @@ export function BackgroundBar() {
   }
 
   return (
-    <div className="flex flex-col gap-2.5">
+    <div className="flex flex-col gap-3">
+      <div>
+        <h2 className="text-[22px] font-bold tracking-tight text-ink mb-0.5">{t('background.title', 'Choose a background')}</h2>
+        <p className="text-[13px] text-text-muted">{t('background.subtitle', 'Describe an image or pick from the suggestions')}</p>
+      </div>
+
       {/* Prompt + generate */}
       <div className="flex gap-2">
         <input
@@ -47,14 +52,14 @@ export function BackgroundBar() {
           onKeyDown={(e) => { if (e.key === 'Enter') handleGenerateImage() }}
           disabled={generatingImage}
           placeholder={t('background.generatePlaceholder', 'Describe a background...')}
-          className="flex-1 px-3 py-2 rounded-full bg-white/40 text-ink text-sm focus:outline-none focus:ring-1 focus:ring-terracotta/30 disabled:opacity-50 placeholder:text-text-muted"
+          className="flex-1 px-4 py-3 rounded-xl bg-[#F5F5F5] text-ink text-sm focus:outline-none focus:ring-2 focus:ring-black/10 disabled:opacity-50 placeholder:text-text-muted"
         />
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={handleGenerateImage}
           disabled={generatingImage || !imagePrompt.trim()}
           className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-white disabled:opacity-40"
-          style={{ background: 'linear-gradient(135deg, #7A1B2D, #5C0F20)' }}
+          style={{ background: '#000' }}
         >
           {generatingImage ? (
             <motion.div
@@ -63,8 +68,8 @@ export function BackgroundBar() {
               className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white"
             />
           ) : (
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-              <path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21l2-7.5L2 9h7z" />
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
             </svg>
           )}
         </motion.button>
@@ -95,8 +100,8 @@ export function BackgroundBar() {
         whileTap={{ scale: 0.97 }}
         onClick={store.nextStep}
         disabled={generatingImage}
-        className="w-full py-2.5 rounded-full text-white text-sm font-semibold disabled:opacity-40 transition-all"
-        style={{ background: 'linear-gradient(135deg, #7A1B2D, #5C0F20)' }}
+        className="w-full py-3 rounded-full text-white text-sm font-semibold disabled:opacity-40 transition-all"
+        style={{ background: '#000' }}
       >
         {t('common.continue')}
       </motion.button>
@@ -146,7 +151,12 @@ export function MessageBar() {
   }
 
   return (
-    <div className="flex flex-col gap-2.5">
+    <div className="flex flex-col gap-3">
+      <div>
+        <h2 className="text-[22px] font-bold tracking-tight text-ink mb-0.5">{t('message.title', 'Your message')}</h2>
+        <p className="text-[13px] text-text-muted">{t('message.subtitle', 'We wrote something for you — edit it or regenerate')}</p>
+      </div>
+
       {store.isGenerating ? (
         <div className="flex items-center gap-2 py-2">
           <motion.div
@@ -162,7 +172,7 @@ export function MessageBar() {
             value={store.editedMessage}
             onChange={(e) => store.setEditedMessage(e.target.value)}
             rows={3}
-            className="flex-1 px-3 py-2 rounded-xl bg-white/40 text-ink text-sm leading-relaxed resize-none focus:outline-none focus:ring-1 focus:ring-terracotta/30 placeholder:text-text-muted"
+            className="flex-1 px-4 py-3 rounded-xl bg-[#F5F5F5] text-ink text-sm leading-relaxed resize-none focus:outline-none focus:ring-2 focus:ring-black/10 placeholder:text-text-muted"
             placeholder={t('message.freeformPlaceholder')}
           />
           <motion.button
@@ -184,8 +194,8 @@ export function MessageBar() {
         whileTap={{ scale: 0.97 }}
         onClick={store.nextStep}
         disabled={!store.editedMessage}
-        className="w-full py-2.5 rounded-full text-white text-sm font-semibold disabled:opacity-40 transition-all"
-        style={{ background: 'linear-gradient(135deg, #7A1B2D, #5C0F20)' }}
+        className="w-full py-3 rounded-full text-white text-sm font-semibold disabled:opacity-40 transition-all"
+        style={{ background: '#000' }}
       >
         {t('common.continue')}
       </motion.button>

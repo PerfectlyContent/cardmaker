@@ -17,10 +17,11 @@ const GUIDED_STEPS: WizardStep[] = [
   'create',
   'background',
   'message',
+  'preview',
   'share',
 ]
 
-const FREEFORM_STEPS: WizardStep[] = ['welcome', 'chat', 'share']
+const FREEFORM_STEPS: WizardStep[] = ['welcome', 'chat', 'preview', 'share']
 
 const VIBE_FONT_LATIN: Record<CardVibe, FontConfig> = {
   funny:       { family: 'Caveat',            weight: 700, style: 'normal' },

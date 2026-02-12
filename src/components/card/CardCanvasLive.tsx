@@ -1,15 +1,21 @@
-import { useMemo, useCallback, useState, useEffect } from 'react'
+import { useMemo, useCallback, useState, useEffect, useRef } from 'react'
 import { motion, type PanInfo } from 'motion/react'
 import { useCardStore } from '@/stores/cardStore'
 import { useRTL } from '@/hooks/useRTL'
 import { CardCanvas } from './CardCanvas'
 
-export function CardCanvasLive() {
+interface CardCanvasLiveProps {
+  /** When true, fits within parent container instead of covering viewport */
+  compact?: boolean
+}
+
+export function CardCanvasLive({ compact }: CardCanvasLiveProps) {
   const backgroundImages = useCardStore((s) => s.backgroundImages)
   const backgroundIndex = useCardStore((s) => s.backgroundIndex)
   const setBackgroundIndex = useCardStore((s) => s.setBackgroundIndex)
   const currentStep = useCardStore((s) => s.currentStep)
   const isRTL = useRTL()
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const canSwipe = backgroundImages.length > 1 && (currentStep === 'background' || currentStep === 'message' || currentStep === 'share')
 
@@ -27,20 +33,41 @@ export function CardCanvasLive() {
     [canSwipe, isRTL, backgroundIndex, setBackgroundIndex],
   )
 
-  // Full viewport dimensions
   const [size, setSize] = useState({ w: window.innerWidth, h: window.innerHeight })
-  useEffect(() => {
-    const onResize = () => setSize({ w: window.innerWidth, h: window.innerHeight })
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [])
 
-  // Scale to cover the viewport
-  const scale = Math.max(size.w / 1080, size.h / 1080)
+  useEffect(() => {
+    if (compact && containerRef.current) {
+      const observer = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          setSize({ w: entry.contentRect.width, h: entry.contentRect.height })
+        }
+      })
+      observer.observe(containerRef.current)
+      // Initial measurement
+      const rect = containerRef.current.getBoundingClientRect()
+      setSize({ w: rect.width, h: rect.height })
+      return () => observer.disconnect()
+    } else {
+      const onResize = () => setSize({ w: window.innerWidth, h: window.innerHeight })
+      window.addEventListener('resize', onResize)
+      return () => window.removeEventListener('resize', onResize)
+    }
+  }, [compact])
+
+  // In compact mode: fit within container. In full mode: cover viewport.
+  const scale = compact
+    ? Math.min(size.w / 1080, size.h / 1080)
+    : Math.max(size.w / 1080, size.h / 1080)
+
   const isComplete = currentStep === 'share'
 
   return (
-    <div className="relative w-full h-full overflow-hidden flex items-center justify-center" dir="ltr" style={{ background: '#F5ECEB' }}>
+    <div
+      ref={containerRef}
+      className="relative w-full h-full overflow-hidden flex items-center justify-center"
+      dir="ltr"
+      style={{ background: compact ? '#F7F7F7' : '#F5ECEB' }}
+    >
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -51,18 +78,18 @@ export function CardCanvasLive() {
           overflow: 'hidden',
           flexShrink: 0,
         }}
-        className={isComplete ? 'card-complete-glow' : ''}
+        className={isComplete && !compact ? 'card-complete-glow' : ''}
         drag={canSwipe ? 'x' : false}
         dragConstraints={{ left: 0, right: 0 }}
         dragElastic={0.2}
         onDragEnd={handleSwipeEnd}
         dragDirectionLock
       >
-        <CardCanvas scale={scale} />
+        <CardCanvas scale={scale} viewportWidth={size.w} />
       </motion.div>
 
-      {/* Confetti burst on share step */}
-      {isComplete && <Confetti />}
+      {/* Confetti burst on share step (full mode only) */}
+      {isComplete && !compact && <Confetti />}
     </div>
   )
 }

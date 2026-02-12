@@ -105,7 +105,7 @@ export function CreateFlow() {
           animate={{ opacity: 1 }}
           whileTap={{ scale: 0.9 }}
           onClick={goBack}
-          className="tappable-option text-text-muted mb-2 text-sm font-medium flex items-center gap-1"
+          className="tappable-option text-text-muted mb-3 text-sm font-medium flex items-center gap-1"
         >
           <span className="rtl:rotate-180 inline-block text-xs">←</span>
           {t('common.back')}
@@ -121,22 +121,23 @@ export function CreateFlow() {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
           >
-            <p className="text-xs font-semibold text-text-muted mb-2">{t('occasion.title')}</p>
-            <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1">
+            <h2 className="text-[22px] font-bold tracking-tight text-ink mb-0.5">{t('occasion.title')}</h2>
+            <p className="text-[13px] text-text-muted mb-4">{t('occasion.subtitle', 'Pick one to get started')}</p>
+            <div className="flex gap-2 flex-wrap">
               {getOccasions(lang).map((item) => (
                 <motion.button
                   key={item.id}
-                  whileTap={{ scale: 0.9 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => handleOccasion(item.id)}
-                  className="tappable-option shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-all"
+                  className="tappable-option shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[13px] font-medium transition-all"
                   style={{
                     background: store.occasion === item.id
-                      ? 'linear-gradient(135deg, #7A1B2D, #5C0F20)'
-                      : 'rgba(122,27,45,0.06)',
-                    color: store.occasion === item.id ? 'white' : '#1A0A0E',
+                      ? '#000'
+                      : '#F5F5F5',
+                    color: store.occasion === item.id ? '#fff' : '#1A1A1A',
                   }}
                 >
-                  <span className="text-base">{item.emoji}</span>
+                  <span className="text-sm">{item.emoji}</span>
                   <span className="whitespace-nowrap">{t(`occasion.${item.id}`)}</span>
                 </motion.button>
               ))}
@@ -152,26 +153,27 @@ export function CreateFlow() {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
           >
-            <p className="text-xs font-semibold text-text-muted mb-2">{t('recipient.title')}</p>
-            <div className="flex gap-2">
+            <h2 className="text-[22px] font-bold tracking-tight text-ink mb-0.5">{t('recipient.title')}</h2>
+            <p className="text-[13px] text-text-muted mb-4">{t('recipient.subtitle', 'Is this card for one person or a group?')}</p>
+            <div className="flex gap-3">
               <motion.button
-                whileTap={{ scale: 0.95 }}
+                whileTap={{ scale: 0.97 }}
                 onClick={() => handleRecipient('one')}
-                className="tappable-option flex-1 py-3 rounded-full text-sm font-semibold transition-all"
+                className="tappable-option flex-1 py-4 rounded-2xl text-sm font-semibold transition-all"
                 style={{
-                  background: 'linear-gradient(135deg, #7A1B2D, #5C0F20)',
-                  color: 'white',
+                  background: '#000',
+                  color: '#fff',
                 }}
               >
                 👤 {t('recipient.one')}
               </motion.button>
               <motion.button
-                whileTap={{ scale: 0.95 }}
+                whileTap={{ scale: 0.97 }}
                 onClick={() => handleRecipient('many')}
-                className="tappable-option flex-1 py-3 rounded-full text-sm font-semibold transition-all"
+                className="tappable-option flex-1 py-4 rounded-2xl text-sm font-semibold transition-all"
                 style={{
-                  background: 'rgba(122,27,45,0.08)',
-                  color: '#1A0A0E',
+                  background: '#F5F5F5',
+                  color: '#1A1A1A',
                 }}
               >
                 👥 {t('recipient.many')}
@@ -188,6 +190,8 @@ export function CreateFlow() {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
           >
+            <h2 className="text-[22px] font-bold tracking-tight text-ink mb-0.5">{t('details.title', 'Who is it for?')}</h2>
+            <p className="text-[13px] text-text-muted mb-4">{t('details.subtitle', 'Add a name to personalize the card')}</p>
             <div className="flex items-center gap-2">
               <input
                 ref={inputRef}
@@ -202,27 +206,25 @@ export function CreateFlow() {
                     ? t('details.namePlaceholder')
                     : t('details.groupPlaceholder')
                 }
-                className="flex-1 px-4 py-2.5 rounded-full bg-transparent text-ink text-sm placeholder:text-text-muted focus:outline-none"
+                className="flex-1 px-4 py-3 rounded-xl bg-[#F5F5F5] text-ink text-sm placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-black/10"
                 autoFocus
               />
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={handleDetailsSkip}
-                className="text-xs font-medium text-text-muted px-2"
+                className="text-sm font-medium text-text-muted px-3 py-2"
               >
                 {t('common.skip')}
               </motion.button>
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={handleDetailsNext}
-                className="w-8 h-8 rounded-full flex items-center justify-center shrink-0"
+                className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-all"
                 style={{
-                  background: nameValue.trim()
-                    ? 'linear-gradient(135deg, #7A1B2D, #5C0F20)'
-                    : 'rgba(122,27,45,0.06)',
+                  background: nameValue.trim() ? '#000' : '#F5F5F5',
                 }}
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={nameValue.trim() ? 'white' : '#8A7A7C'} strokeWidth="2.5" strokeLinecap="round">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={nameValue.trim() ? '#fff' : '#999'} strokeWidth="2" strokeLinecap="round">
                   <path d="M5 12h14M13 5l7 7-7 7" />
                 </svg>
               </motion.button>
@@ -238,22 +240,21 @@ export function CreateFlow() {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
           >
-            <p className="text-xs font-semibold text-text-muted mb-2">{t('vibe.title')}</p>
-            <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1">
+            <h2 className="text-[22px] font-bold tracking-tight text-ink mb-0.5">{t('vibe.title')}</h2>
+            <p className="text-[13px] text-text-muted mb-4">{t('vibe.subtitle', 'What mood should your card have?')}</p>
+            <div className="flex gap-2 flex-wrap">
               {VIBES.map((item) => (
                 <motion.button
                   key={item.id}
-                  whileTap={{ scale: 0.9 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => handleVibe(item.id)}
-                  className="tappable-option shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-all"
+                  className="tappable-option shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[13px] font-medium transition-all"
                   style={{
-                    background: store.vibe === item.id
-                      ? 'linear-gradient(135deg, #7A1B2D, #5C0F20)'
-                      : 'rgba(122,27,45,0.06)',
-                    color: store.vibe === item.id ? 'white' : '#1A0A0E',
+                    background: store.vibe === item.id ? '#000' : '#F5F5F5',
+                    color: store.vibe === item.id ? '#fff' : '#1A1A1A',
                   }}
                 >
-                  <span className="text-base">{item.emoji}</span>
+                  <span className="text-sm">{item.emoji}</span>
                   <span className="whitespace-nowrap">{t(`vibe.${item.id}`)}</span>
                 </motion.button>
               ))}

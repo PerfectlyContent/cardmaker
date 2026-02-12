@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'motion/react'
 import { toPng } from 'html-to-image'
 import { useCardStore } from '@/stores/cardStore'
-import { shareCard, downloadBlob, shareViaWhatsApp, copyToClipboard } from '@/lib/share'
+import { shareCard, downloadBlob, shareViaWhatsApp } from '@/lib/share'
 
 export function ShareScreen({ onEdit }: { onEdit: () => void }) {
   const { t } = useTranslation()
@@ -22,12 +22,9 @@ export function ShareScreen({ onEdit }: { onEdit: () => void }) {
     setExporting(true)
     try {
       await document.fonts.ready
-      const dataUrl = await toPng(el, {
-        pixelRatio: 2,
-        width: 1080,
-        height: 1080,
-        cacheBust: true,
-      })
+      // Double-render: first call warms image cache, second produces clean output
+      await toPng(el, { pixelRatio: 2, width: 1080, height: 1080, cacheBust: true })
+      const dataUrl = await toPng(el, { pixelRatio: 2, width: 1080, height: 1080, cacheBust: true })
       const res = await fetch(dataUrl)
       return await res.blob()
     } catch (err) {
@@ -59,13 +56,6 @@ export function ShareScreen({ onEdit }: { onEdit: () => void }) {
     shareViaWhatsApp(blob)
   }
 
-  const handleCopy = async () => {
-    const blob = await getBlob()
-    if (!blob) return
-    const ok = await copyToClipboard(blob)
-    if (ok) showToast(t('preview.copySuccess'))
-  }
-
   const actions = [
     {
       label: t('preview.share'),
@@ -95,16 +85,6 @@ export function ShareScreen({ onEdit }: { onEdit: () => void }) {
           <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
           <polyline points="7 10 12 15 17 10" />
           <line x1="12" y1="15" x2="12" y2="3" />
-        </svg>
-      ),
-    },
-    {
-      label: t('preview.copy'),
-      onClick: handleCopy,
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-          <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
         </svg>
       ),
     },

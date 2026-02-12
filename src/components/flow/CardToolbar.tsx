@@ -39,8 +39,22 @@ function getFonts(lang: string) {
 }
 
 const COLORS = [
-  '#FFFFFF', '#000000', '#1A0A0E', '#7A1B2D',
-  '#B83A4A', '#9B2335', '#D4757F', '#5C0F20',
+  // Neutrals
+  '#FFFFFF', '#F5F5F5', '#D4D4D4', '#9CA3AF',
+  '#6B7280', '#374151', '#1F2937', '#000000',
+  // Warm
+  '#FEF3C7', '#FDE68A', '#FBBF24', '#F59E0B',
+  '#FED7AA', '#FDBA74', '#FB923C', '#EA580C',
+  '#FECACA', '#FCA5A5', '#F87171', '#DC2626',
+  // Cool
+  '#DBEAFE', '#93C5FD', '#3B82F6', '#1D4ED8',
+  '#E0E7FF', '#A5B4FC', '#818CF8', '#4F46E5',
+  '#D5F5F6', '#67E8F9', '#06B6D4', '#0E7490',
+  // Nature
+  '#D1FAE5', '#6EE7B7', '#10B981', '#047857',
+  '#FCE7F3', '#F9A8D4', '#EC4899', '#BE185D',
+  // Brand / Wine
+  '#7A1B2D', '#9B2335', '#B83A4A', '#D4757F',
 ]
 
 const TAB_ICONS: Record<ToolTab, JSX.Element> = {
@@ -80,13 +94,17 @@ const TAB_ICONS: Record<ToolTab, JSX.Element> = {
   ),
 }
 
-export function CardToolbar() {
+interface CardToolbarProps {
+  onDone?: () => void
+}
+
+export function CardToolbar({ onDone }: CardToolbarProps) {
   const { t } = useTranslation()
   const store = useCardStore()
   const [activeTab, setActiveTab] = useState<ToolTab>('text')
 
   return (
-    <div className="px-4 pb-4">
+    <div>
       {/* Tab bar */}
       <div className="flex gap-1 mb-3 overflow-x-auto pb-1 -mx-1 px-1">
         {(Object.keys(TAB_ICONS) as ToolTab[]).map((tab) => (
@@ -117,6 +135,21 @@ export function CardToolbar() {
           {activeTab === 'background' && <BackgroundTab />}
         </motion.div>
       </AnimatePresence>
+
+      {/* Done button — returns to share/preview */}
+      {onDone && (
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={onDone}
+          className="w-full mt-4 py-3 rounded-full text-white text-sm font-semibold transition-all"
+          style={{ background: '#000' }}
+        >
+          {t('toolbar.done', 'Done')}
+        </motion.button>
+      )}
     </div>
   )
 }
@@ -254,7 +287,7 @@ function ColorTab() {
   return (
     <div>
       <label className="text-xs font-semibold text-text-muted mb-2 block">{t('toolbar.color')}</label>
-      <div className="flex gap-3 flex-wrap">
+      <div className="flex gap-2 flex-wrap">
         {COLORS.map((color) => (
           <button
             key={color}
@@ -399,8 +432,8 @@ function BackgroundTab() {
               className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white"
             />
           ) : (
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-              <path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21l2-7.5L2 9h7z" />
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
             </svg>
           )}
         </motion.button>

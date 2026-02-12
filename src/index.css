@@ -111,13 +111,18 @@ body {
 /* ─── Card canvas text ─── */
 .card-text-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.3); }
 
-/* ─── Capsule bar (floating pill) ─── */
+/* ─── Capsule bar (floating pill — used on share overlay) ─── */
 .capsule-bar {
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-radius: 28px;
   box-shadow: 0 4px 24px rgba(26, 10, 14, 0.12), 0 0 0 1px rgba(122, 27, 45, 0.04);
+}
+
+/* ─── Flow panel (top section during creation — clean Apple style) ─── */
+.flow-panel {
+  background: #FFFFFF;
 }
 
 /* ─── Tappable option ─── */

@@ -6,23 +6,28 @@ interface StepCounterProps {
 }
 
 export function StepIndicator({ current, total }: StepCounterProps) {
-  const progress = current / total
-
   return (
-    <div className="flex items-center gap-2.5">
-      {/* Progress bar */}
-      <div className="w-16 h-1.5 rounded-full bg-ink/8 overflow-hidden">
-        <motion.div
-          className="h-full rounded-full"
-          style={{ background: 'linear-gradient(90deg, #7A1B2D, #B83A4A)' }}
-          initial={{ width: 0 }}
-          animate={{ width: `${progress * 100}%` }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        />
-      </div>
-      <span className="text-xs font-semibold text-text-muted tracking-wide tabular-nums">
-        {current}/{total}
-      </span>
+    <div className="flex items-center gap-1.5">
+      {Array.from({ length: total }, (_, i) => {
+        const step = i + 1
+        const isActive = step === current
+        const isCompleted = step < current
+
+        return (
+          <motion.div
+            key={step}
+            animate={{
+              width: isActive ? 20 : 6,
+              opacity: isActive || isCompleted ? 1 : 0.25,
+            }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="h-1.5 rounded-full shrink-0"
+            style={{
+              background: isActive || isCompleted ? '#000' : '#000',
+            }}
+          />
+        )
+      })}
     </div>
   )
 }

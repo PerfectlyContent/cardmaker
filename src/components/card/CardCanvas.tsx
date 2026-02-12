@@ -5,6 +5,7 @@ import { useCardStore } from '@/stores/cardStore'
 
 interface CardCanvasProps {
   scale?: number
+  viewportWidth?: number
 }
 
 const OCCASION_EMOJI: Record<string, string> = {
@@ -28,7 +29,7 @@ const OCCASION_GRADIENT: Record<string, string> = {
 const DEFAULT_GRADIENT = 'linear-gradient(135deg, #FFFAF9 0%, #F5ECEB 50%, #FFF5F3 100%)'
 
 export const CardCanvas = forwardRef<HTMLDivElement, CardCanvasProps>(
-  ({ scale = 1 }, ref) => {
+  ({ scale = 1, viewportWidth }, ref) => {
     const { t } = useTranslation()
     const backgroundImage = useCardStore((s) => s.backgroundImage)
     const editedMessage = useCardStore((s) => s.editedMessage)
@@ -179,14 +180,29 @@ export const CardCanvas = forwardRef<HTMLDivElement, CardCanvasProps>(
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/50" />
         )}
 
-        {/* Text overlay */}
+        {/* Text overlay — dynamic padding to keep text within visible viewport */}
         <div
-          className={`absolute inset-0 flex flex-col ${positionClasses[textPosition]} px-[10%]`}
+          className={`absolute inset-0 flex flex-col items-center ${positionClasses[textPosition]} overflow-hidden`}
+          style={{
+            paddingLeft: (() => {
+              if (!viewportWidth || !scale) return '12%'
+              const visibleW = viewportWidth / scale
+              const clip = Math.max(0, (1080 - visibleW) / 2)
+              return `${clip + 48}px`
+            })(),
+            paddingRight: (() => {
+              if (!viewportWidth || !scale) return '12%'
+              const visibleW = viewportWidth / scale
+              const clip = Math.max(0, (1080 - visibleW) / 2)
+              return `${clip + 48}px`
+            })(),
+          }}
         >
           <AnimatePresence mode="wait">
             {editedMessage && (
               <motion.p
                 key={editedMessage.slice(0, 20)}
+                dir="auto"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
@@ -201,6 +217,7 @@ export const CardCanvas = forwardRef<HTMLDivElement, CardCanvasProps>(
                   textShadow: backgroundImage
                     ? '0 2px 12px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.3)'
                     : 'none',
+                  overflowWrap: 'break-word',
                   wordBreak: 'break-word',
                   maxWidth: '100%',
                   whiteSpace: 'pre-line',

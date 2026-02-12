@@ -61,6 +61,7 @@ export type WizardStep =
   | 'create'
   | 'background'
   | 'message'
+  | 'preview'
   | 'share'
 
 export type ChatField =
