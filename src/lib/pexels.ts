@@ -1,22 +1,12 @@
 import type { BackgroundImage } from '@/types'
 
-const BASE_URL = 'https://api.pexels.com/v1'
-
-function getApiKey(): string {
-  const key = import.meta.env.VITE_PEXELS_API_KEY
-  if (!key) {
-    throw new Error('Pexels API key not configured. Set VITE_PEXELS_API_KEY in .env')
-  }
-  return key
-}
+const API_BASE = import.meta.env.VITE_API_BASE || ''
 
 export async function searchImages(
   query: string,
   page = 1,
   perPage = 12,
 ): Promise<BackgroundImage[]> {
-  const apiKey = getApiKey()
-
   const params = new URLSearchParams({
     query,
     page: String(page),
@@ -24,11 +14,7 @@ export async function searchImages(
     orientation: 'square',
   })
 
-  const response = await fetch(`${BASE_URL}/search?${params}`, {
-    headers: {
-      Authorization: apiKey,
-    },
-  })
+  const response = await fetch(`${API_BASE}/api/pexels/search?${params}`)
 
   if (!response.ok) {
     throw new Error(`Pexels API error: ${response.status}`)
@@ -36,7 +22,6 @@ export async function searchImages(
 
   const data = await response.json()
 
-  // Map Pexels response to our BackgroundImage interface
   return (data.photos || []).map((photo: Record<string, unknown>): BackgroundImage => {
     const src = photo.src as Record<string, string>
     return {

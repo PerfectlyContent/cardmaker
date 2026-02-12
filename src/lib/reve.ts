@@ -1,33 +1,19 @@
-const API_URL = 'https://api.reve.com/v1/image/create'
-
-function getApiKey(): string {
-  const key = import.meta.env.VITE_REVE_API_KEY
-  if (!key) {
-    throw new Error('Reve API key not configured. Set VITE_REVE_API_KEY in .env')
-  }
-  return key
-}
+const API_BASE = import.meta.env.VITE_API_BASE || ''
 
 /**
- * Generate an image using Reve AI.
+ * Generate an image using Reve AI via server proxy.
  * Returns a data URL (base64-encoded PNG) that can be used directly as an img src.
  */
 export async function generateImage(prompt: string): Promise<string> {
-  const response = await fetch(API_URL, {
+  const response = await fetch(`${API_BASE}/api/reve/generate`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${getApiKey()}`,
-    },
-    body: JSON.stringify({
-      prompt,
-      aspect_ratio: '1:1',
-    }),
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt, aspect_ratio: '1:1' }),
   })
 
   if (!response.ok) {
     const err = await response.json().catch(() => ({}))
-    throw new Error(err.message || `Reve API error: ${response.status}`)
+    throw new Error(err.error || `Reve API error: ${response.status}`)
   }
 
   const data = await response.json()

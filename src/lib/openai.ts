@@ -1,39 +1,29 @@
-import { GoogleGenerativeAI } from '@google/generative-ai'
-
-let model: ReturnType<GoogleGenerativeAI['getGenerativeModel']> | null = null
-
-function getModel() {
-  if (!model) {
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY
-    if (!apiKey) {
-      throw new Error('Gemini API key not configured. Set VITE_GEMINI_API_KEY in .env')
-    }
-    const genAI = new GoogleGenerativeAI(apiKey)
-    model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' })
-  }
-  return model
-}
+const API_BASE = import.meta.env.VITE_API_BASE || ''
 
 const SYSTEM_INSTRUCTION =
   'You are a greeting card writer. Write warm, heartfelt, and creative messages for greeting cards. Keep messages concise (30-50 words max). Do not include quotation marks around the message. Do not add any explanation or metadata — just the card message itself.'
 
-export async function generateCardMessage(prompt: string): Promise<string> {
-  const gemini = getModel()
-
-  const result = await gemini.generateContent({
-    contents: [
-      {
-        role: 'user',
-        parts: [{ text: `${SYSTEM_INSTRUCTION}\n\n${prompt}` }],
-      },
-    ],
-    generationConfig: {
-      temperature: 0.8,
-      maxOutputTokens: 150,
-    },
+async function callGemini(contents: unknown[], generationConfig: unknown): Promise<string> {
+  const response = await fetch(`${API_BASE}/api/gemini/generate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ contents, generationConfig }),
   })
 
-  return result.response.text().trim()
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}))
+    throw new Error(err.error || `API error: ${response.status}`)
+  }
+
+  const data = await response.json()
+  return data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || ''
+}
+
+export async function generateCardMessage(prompt: string): Promise<string> {
+  return callGemini(
+    [{ role: 'user', parts: [{ text: `${SYSTEM_INSTRUCTION}\n\n${prompt}` }] }],
+    { temperature: 0.8, maxOutputTokens: 150 },
+  )
 }
 
 // --- Multi-turn chat for the freeform conversational flow ---
@@ -71,8 +61,6 @@ export async function chatWithAssistant(
   userMessage: string,
   lang: string,
 ): Promise<string> {
-  const gemini = getModel()
-
   const contents = [
     {
       role: 'user' as const,
@@ -82,27 +70,17 @@ export async function chatWithAssistant(
       role: 'model' as const,
       parts: [{ text: history.length === 0 ? getGreeting(lang) : 'OK' }],
     },
-    // Add conversation history
     ...history.flatMap((turn) => [{
       role: turn.role as 'user' | 'model',
       parts: [{ text: turn.text }],
     }]),
-    // Add the new user message
     {
       role: 'user' as const,
       parts: [{ text: userMessage }],
     },
   ]
 
-  const result = await gemini.generateContent({
-    contents,
-    generationConfig: {
-      temperature: 0.7,
-      maxOutputTokens: 500,
-    },
-  })
-
-  return result.response.text().trim()
+  return callGemini(contents, { temperature: 0.7, maxOutputTokens: 500 })
 }
 
 function getGreeting(lang: string): string {
