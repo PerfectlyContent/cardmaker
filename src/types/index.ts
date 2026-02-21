@@ -96,6 +96,18 @@ export interface FontConfig {
   style: 'normal' | 'italic'
 }
 
+export type DateType = 'birthday' | 'anniversary' | 'holiday' | 'custom'
+
+export interface ImportantDate {
+  id: string
+  name: string
+  date: string // YYYY-MM-DD
+  type: DateType
+  phone?: string
+  notes?: string
+  recurring: boolean
+}
+
 export interface CardData {
   mode: FlowMode
   occasion: Occasion | null

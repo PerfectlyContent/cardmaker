@@ -2,6 +2,7 @@ import { Suspense, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useTranslation } from 'react-i18next'
 import { useCardStore } from '@/stores/cardStore'
+import { useDateStore } from '@/stores/dateStore'
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
 import { FlowPanel } from '@/components/ui/CapsuleBar'
 import { CardCanvasLive } from '@/components/card/CardCanvasLive'
@@ -14,6 +15,10 @@ import { RevealScreen } from '@/components/flow/RevealScreen'
 import { ChatFlow } from '@/components/flow/ChatFlow'
 import { CardToolbar } from '@/components/flow/CardToolbar'
 import { StepIndicator } from '@/components/ui/StepIndicator'
+import { CalendarTab } from '@/components/dates/CalendarTab'
+import { DatesOnboarding } from '@/components/dates/DatesOnboarding'
+
+type HomeTab = 'create' | 'dates'
 
 function BackButton({ onClick }: { onClick: () => void }) {
   return (
@@ -27,6 +32,82 @@ function BackButton({ onClick }: { onClick: () => void }) {
         <path d="M15 18l-6-6 6-6" />
       </svg>
     </motion.button>
+  )
+}
+
+function BottomTabBar({ activeTab, onTabChange }: { activeTab: HomeTab; onTabChange: (tab: HomeTab) => void }) {
+  const { t } = useTranslation()
+  const dates = useDateStore((s) => s.dates)
+  const upcomingSoon = dates.filter((d) => {
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    const date = new Date(d.date + 'T00:00:00')
+    const thisYear = new Date(today.getFullYear(), date.getMonth(), date.getDate())
+    const diff = Math.round((thisYear.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+    return diff >= 0 && diff <= 7
+  }).length
+
+  return (
+    <div
+      className="fixed bottom-0 left-0 right-0 z-40 flex items-end justify-center"
+      style={{ paddingBottom: 'max(8px, env(safe-area-inset-bottom))' }}
+    >
+      <div
+        className="flex items-center gap-1 px-2 py-1.5 rounded-2xl"
+        style={{
+          background: 'rgba(255,255,255,0.12)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          border: '1px solid rgba(255,255,255,0.1)',
+          boxShadow: '0 4px 24px rgba(0,0,0,0.2)',
+        }}
+      >
+        {/* Create tab */}
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          onClick={() => onTabChange('create')}
+          className="tappable-option flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all"
+          style={{
+            background: activeTab === 'create' ? 'rgba(255,255,255,0.9)' : 'transparent',
+            color: activeTab === 'create' ? '#5C0F20' : 'rgba(255,255,255,0.5)',
+          }}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 20h9" />
+            <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+          </svg>
+          {t('dates.tabCreate', 'Create')}
+        </motion.button>
+
+        {/* Dates tab */}
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          onClick={() => onTabChange('dates')}
+          className="tappable-option flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all relative"
+          style={{
+            background: activeTab === 'dates' ? 'rgba(255,255,255,0.9)' : 'transparent',
+            color: activeTab === 'dates' ? '#5C0F20' : 'rgba(255,255,255,0.5)',
+          }}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          {t('dates.tabDates', 'Dates')}
+          {/* Badge for upcoming dates */}
+          {upcomingSoon > 0 && activeTab !== 'dates' && (
+            <span
+              className="absolute -top-1 -end-1 w-4.5 h-4.5 rounded-full text-[9px] font-bold flex items-center justify-center"
+              style={{ background: '#B83A4A', color: '#fff', minWidth: 18, height: 18 }}
+            >
+              {upcomingSoon}
+            </span>
+          )}
+        </motion.button>
+      </div>
+    </div>
   )
 }
 
@@ -44,6 +125,9 @@ function App() {
   const prevStep = useCardStore((s) => s.prevStep)
   const exportRef = useRef<HTMLDivElement>(null)
   const [editing, setEditing] = useState(false)
+  const [homeTab, setHomeTab] = useState<HomeTab>('create')
+  const hasOnboarded = useDateStore((s) => s.hasOnboarded)
+  const [showOnboarding, setShowOnboarding] = useState(!hasOnboarded)
 
   const isChatMode = mode === 'freeform' && currentStep === 'chat'
   const isPreview = currentStep === 'preview' && !editing
@@ -76,21 +160,62 @@ function App() {
       {mode === 'guided' && progress.current > 0 && (
         <StepIndicator current={progress.current} total={progress.total} />
       )}
-      {/* Language switcher removed — only on welcome */}
     </>
   )
 
   return (
     <div className={`h-[100dvh] flex flex-col relative overflow-hidden ${currentStep === 'welcome' ? '' : 'bg-white'}`}>
 
-      {/* ─── WELCOME SCREEN ─── */}
+      {/* ─── HOME SCREEN (Welcome + Tabs) ─── */}
       {currentStep === 'welcome' && (
-        <div className="absolute inset-0 flex items-center justify-center z-10">
-          <div className="absolute inset-0 app-bg" />
-          <div className="relative z-10 w-full max-w-md">
-            <WelcomeScreen />
+        <>
+          <div className="absolute inset-0 z-10 flex flex-col">
+            <div className="absolute inset-0 app-bg" />
+
+            <div className="relative z-10 flex-1 overflow-hidden">
+              <AnimatePresence mode="wait">
+                {homeTab === 'create' && (
+                  <motion.div
+                    key="tab-create"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.25 }}
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <div className="w-full max-w-md">
+                      <WelcomeScreen />
+                    </div>
+                  </motion.div>
+                )}
+
+                {homeTab === 'dates' && (
+                  <motion.div
+                    key="tab-dates"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ duration: 0.25 }}
+                    className="absolute inset-0 overflow-y-auto"
+                    style={{ paddingTop: 'max(16px, env(safe-area-inset-top))' }}
+                  >
+                    <CalendarTab />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Bottom tab bar */}
+            <BottomTabBar activeTab={homeTab} onTabChange={setHomeTab} />
           </div>
-        </div>
+
+          {/* Dates onboarding overlay */}
+          <AnimatePresence>
+            {showOnboarding && (
+              <DatesOnboarding onDone={() => setShowOnboarding(false)} />
+            )}
+          </AnimatePresence>
+        </>
       )}
 
       {/* ─── SPLIT LAYOUT: Top flow panel + bottom card ─── */}
