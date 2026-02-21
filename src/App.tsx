@@ -212,7 +212,10 @@ function App() {
           {/* Dates onboarding overlay */}
           <AnimatePresence>
             {showOnboarding && (
-              <DatesOnboarding onDone={() => setShowOnboarding(false)} />
+              <DatesOnboarding
+                onDone={() => setShowOnboarding(false)}
+                onCreateCard={() => setShowOnboarding(false)}
+              />
             )}
           </AnimatePresence>
         </>
