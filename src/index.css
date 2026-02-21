@@ -41,7 +41,6 @@ body {
 /* ─── Warm gradient background ─── */
 .app-bg {
   background: linear-gradient(160deg, #5C0F20 0%, #7A1B2D 35%, #4A0A1A 70%, #3D0815 100%);
-  position: relative;
 }
 
 .app-bg::before {
