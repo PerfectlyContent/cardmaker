@@ -55,29 +55,6 @@ app.get('/api/pexels/search', async (req, res) => {
   }
 })
 
-// Reve — AI image generation
-app.post('/api/reve/generate', async (req, res) => {
-  const apiKey = process.env.REVE_API_KEY
-  if (!apiKey) return res.status(500).json({ error: 'Reve API key not configured' })
-
-  try {
-    const response = await fetch('https://api.reve.com/v1/image/create', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify(req.body),
-    })
-    const data = await response.json()
-    if (!response.ok) return res.status(response.status).json(data)
-    res.json(data)
-  } catch (err) {
-    console.error('Reve proxy error:', err)
-    res.status(500).json({ error: 'Reve request failed' })
-  }
-})
-
 // ─── Serve static files (Vite build output) ───
 app.use(express.static(path.join(__dirname, 'dist')))
 

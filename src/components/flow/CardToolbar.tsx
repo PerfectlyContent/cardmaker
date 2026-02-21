@@ -368,76 +368,10 @@ function BackgroundTab() {
   const backgroundImages = useCardStore((s) => s.backgroundImages)
   const backgroundIndex = useCardStore((s) => s.backgroundIndex)
   const setBackgroundIndex = useCardStore((s) => s.setBackgroundIndex)
-  const setBackgroundImages = useCardStore((s) => s.setBackgroundImages)
-  const setBackgroundImage = useCardStore((s) => s.setBackgroundImage)
-  const [prompt, setPrompt] = useState('')
-  const [generating, setGenerating] = useState(false)
-
-  const handleGenerate = async () => {
-    const trimmed = prompt.trim()
-    if (!trimmed) return
-    setGenerating(true)
-    try {
-      const { generateImage } = await import('@/lib/reve')
-      const dataUrl = await generateImage(trimmed)
-      const generated = {
-        id: `reve-${Date.now()}`,
-        urls: { raw: dataUrl, full: dataUrl, regular: dataUrl, small: dataUrl, thumb: dataUrl },
-        alt_description: trimmed,
-        photographer: 'AI Generated',
-        photographerUrl: '',
-        width: 1080,
-        height: 1080,
-      }
-      const updated = [generated, ...backgroundImages]
-      setBackgroundImages(updated)
-      setBackgroundImage(generated)
-    } catch (err) {
-      console.error('Image generation failed:', err)
-    } finally {
-      setGenerating(false)
-    }
-  }
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') handleGenerate()
-  }
 
   return (
     <div>
       <label className="text-xs font-semibold text-text-muted mb-2 block">{t('toolbar.background')}</label>
-
-      {/* AI Generate input */}
-      <div className="flex gap-2 mb-3">
-        <input
-          type="text"
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          onKeyDown={handleKeyDown}
-          disabled={generating}
-          placeholder={t('background.generatePlaceholder', 'e.g. sunset over ocean...')}
-          className="flex-1 px-3 py-2 rounded-xl bg-bg-subtle border border-border-strong text-ink text-sm focus:outline-none focus:ring-2 focus:ring-terracotta/30 disabled:opacity-50"
-        />
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          onClick={handleGenerate}
-          disabled={generating || !prompt.trim()}
-          className="px-3 py-2 rounded-xl text-white text-sm font-semibold disabled:opacity-40 transition-all flex items-center gap-1"
-          style={{ background: 'linear-gradient(135deg, #7A1B2D, #5C0F20)' }}
-        >
-          {generating ? (
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
-              className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white"
-            />
-          ) : (
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
-            </svg>
-          )}
-        </motion.button>
-      </div>
 
       {/* Thumbnails */}
       {backgroundImages.length > 0 ? (

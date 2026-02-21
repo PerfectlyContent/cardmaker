@@ -2,77 +2,17 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'motion/react'
 import { useCardStore } from '@/stores/cardStore'
-import { generateImage } from '@/lib/reve'
 
-/** Background selection capsule — image gen + thumbnail strip */
+/** Background selection capsule — thumbnail strip */
 export function BackgroundBar() {
   const { t } = useTranslation()
   const store = useCardStore()
-  const [imagePrompt, setImagePrompt] = useState('')
-  const [generatingImage, setGeneratingImage] = useState(false)
-
-  const handleGenerateImage = async () => {
-    const trimmed = imagePrompt.trim()
-    if (!trimmed) return
-    setGeneratingImage(true)
-    try {
-      const dataUrl = await generateImage(trimmed)
-      const generated = {
-        id: `reve-${Date.now()}`,
-        urls: { raw: dataUrl, full: dataUrl, regular: dataUrl, small: dataUrl, thumb: dataUrl },
-        alt_description: trimmed,
-        photographer: 'AI Generated',
-        photographerUrl: '',
-        width: 1080,
-        height: 1080,
-      }
-      const updated = [generated, ...store.backgroundImages]
-      store.setBackgroundImages(updated)
-      store.setBackgroundImage(generated)
-    } catch (err) {
-      console.error('Image generation failed:', err)
-    } finally {
-      setGeneratingImage(false)
-    }
-  }
 
   return (
     <div className="flex flex-col gap-3">
       <div>
         <h2 className="text-[22px] font-bold tracking-tight text-ink mb-0.5">{t('background.title', 'Choose a background')}</h2>
-        <p className="text-[13px] text-text-muted">{t('background.subtitle', 'Describe an image or pick from the suggestions')}</p>
-      </div>
-
-      {/* Prompt + generate */}
-      <div className="flex gap-2">
-        <input
-          type="text"
-          value={imagePrompt}
-          onChange={(e) => setImagePrompt(e.target.value)}
-          onKeyDown={(e) => { if (e.key === 'Enter') handleGenerateImage() }}
-          disabled={generatingImage}
-          placeholder={t('background.generatePlaceholder', 'Describe a background...')}
-          className="flex-1 px-4 py-3 rounded-xl bg-[#F5F5F5] text-ink text-sm focus:outline-none focus:ring-2 focus:ring-black/10 disabled:opacity-50 placeholder:text-text-muted"
-        />
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          onClick={handleGenerateImage}
-          disabled={generatingImage || !imagePrompt.trim()}
-          className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-white disabled:opacity-40"
-          style={{ background: '#000' }}
-        >
-          {generatingImage ? (
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
-              className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white"
-            />
-          ) : (
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
-            </svg>
-          )}
-        </motion.button>
+        <p className="text-[13px] text-text-muted">{t('background.hint', 'Swipe left & right on the card above')}</p>
       </div>
 
       {/* Thumbnail strip */}
@@ -99,7 +39,6 @@ export function BackgroundBar() {
       <motion.button
         whileTap={{ scale: 0.97 }}
         onClick={store.nextStep}
-        disabled={generatingImage}
         className="w-full py-3 rounded-full text-white text-sm font-semibold disabled:opacity-40 transition-all"
         style={{ background: '#000' }}
       >
